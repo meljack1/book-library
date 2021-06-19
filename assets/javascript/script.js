@@ -37,9 +37,17 @@ function addBookToLibrary(book) {
 
 function createBook(event) {
     event.preventDefault();
-    let title = titleInput.value.trim();
-    let author = authorInput.value.trim();
-    let pages = pagesInput.value.trim();
+    if (!titleInput.value || !authorInput.value || !pagesInput.value){
+        alert("Please ensure all fields are full!");
+        return;
+    }
+    const title = titleInput.value.trim();
+    const author = authorInput.value.trim();
+    if (pagesInput.value < 1 || isNaN(pagesInput.value)){
+        alert("Please input a valid whole number!");
+        return;
+    }
+    const pages = pagesInput.value.trim();
     let read;
     if (readInput.value == "read") {
         read = "✔️";
@@ -47,13 +55,16 @@ function createBook(event) {
         read = "❌";
     }
     let book = new Book(title, author, pages, read)
+
+    titleInput.value = "";
+    authorInput.value = "";
+    pagesInput.value = "";
+    readInput.value = "read";
+    
     addBookToLibrary(book); 
     displayBooks();
+    buttonEventListeners();
 }
-
-// Adds new book when submit button is pressed 
-
-submitButton.addEventListener("click", createBook);
 
 // Creates new td for reach property in the book object
 
@@ -132,6 +143,9 @@ function buttonEventListeners(){
 
 buttonEventListeners();
 
+// Adds new book when submit button is pressed 
+
+submitButton.addEventListener("click", createBook);
  
 
 
