@@ -1,3 +1,4 @@
+const tableBody = document.querySelector("tbody")
 let myLibrary = [];
 
 function Book(title, author, pages, read) {
@@ -22,3 +23,24 @@ function addBookToLibrary() {
     myLibrary.push(new Book(title, author, pages, read));
 }
 
+function displayBooks() {
+    for (let i = 0; i < myLibrary.length; i++){
+        let bookEntry = document.createElement("tr");
+        tableBody.appendChild(bookEntry);
+
+        let titleEntry = document.createElement("td");
+        titleEntry.textContent = myLibrary[i].title;
+        bookEntry.appendChild(titleEntry);
+        let authorEntry = document.createElement("td");
+        authorEntry.textContent = myLibrary[i].author;
+        bookEntry.appendChild(authorEntry);
+        let pagesEntry = document.createElement("td");
+        pagesEntry.textContent = myLibrary[i].pages;
+        bookEntry.appendChild(pagesEntry);
+        let readEntry = document.createElement("td");
+        readEntry.textContent = myLibrary[i].read;
+        bookEntry.appendChild(readEntry);
+    }
+}
+
+displayBooks();
