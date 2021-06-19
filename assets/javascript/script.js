@@ -5,6 +5,8 @@ const pagesInput = document.querySelector("#pages");
 const readInput = document.querySelector("#read-or-not");
 const submitButton = document.querySelector("#submit");
 
+// Book constructor function to make new books
+
 function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
@@ -49,20 +51,29 @@ function createBook(event) {
     displayBooks();
 }
 
+// Adds new book when submit button is pressed 
+
 submitButton.addEventListener("click", createBook);
+
+// Creates new td for reach property in the book object
+
 function createTableData(book, prop) {
     let td = document.createElement("td");
     td.textContent = book[prop];
+    td.setAttribute("class", prop);
     return td;
 }
 
+// Displays all the books on the page
+
 function displayBooks() {
-    const myLibrary = getLibrary();
+    const library = getLibrary();
     tableBody.textContent = "";
-    for (let i = 0; i < myLibrary.length; i++) {
+    for (let i = 0; i < library.length; i++) {
         let bookEntry = document.createElement("tr");
+        bookEntry.setAttribute("id", i);
         tableBody.appendChild(bookEntry);
-        const book = myLibrary[i];
+        const book = library[i];
         const entries = [
             createTableData(book, "title"),
             createTableData(book, "author"), 
@@ -71,18 +82,59 @@ function displayBooks() {
         ];
         
         let deleteEntry = document.createElement("td");
-        bookEntry.appendChild(deleteEntry);
-        let deleteButton = document.createElement("input");
-        deleteButton.setAttribute("type", "button")
-        deleteButton.setAttribute("value", "X")
-        deleteButton.setAttribute("class", "delete-button");
-
+        deleteEntry.textContent = "❌"
+        deleteEntry.setAttribute("class", "delete");
 
         // Turns entries array into comma separated values
         bookEntry.append(...entries, deleteEntry);
-        deleteEntry.appendChild(deleteButton);
-        
     }
 }
 
 displayBooks();
+
+// Delete button functionality 
+
+function deleteEntry(a) {
+    const library = getLibrary();
+    const bookEntry = document.getElementById(a);
+    bookEntry.remove(); 
+    library.splice(a, 1);
+    localStorage.setItem("library", JSON.stringify(library));
+    displayBooks();
+    buttonEventListeners();
+}
+
+// Toggles book to be read or not
+
+function toggleRead(a) {
+    const library = getLibrary();
+    const book = library[a];
+    if (book.read == "✔️") {
+        book.read = "❌";
+    } else {
+        book.read = "✔️";
+    }; 
+    localStorage.setItem("library", JSON.stringify(library));
+    displayBooks();
+    buttonEventListeners();
+}
+
+function buttonEventListeners(){
+    const deleteButtons = document.querySelectorAll(".delete");
+    for (let i = 0; i < deleteButtons.length; i++) {
+        deleteButtons[i].addEventListener('click', deleteEntry.bind(this, i), false);
+    }
+    const readButtons = document.querySelectorAll(".read");
+    for (let i = 0; i < readButtons.length; i++) {
+        readButtons[i].addEventListener('click', toggleRead.bind(this, i), false);
+    }
+}
+
+buttonEventListeners();
+
+ 
+
+
+
+
+

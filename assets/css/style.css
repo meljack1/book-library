@@ -10,3 +10,8 @@ body {
 .hidden {
     visibility: hidden;
 }
+
+.read, .delete {
+    cursor: pointer;
+
+}
