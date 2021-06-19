@@ -1,0 +1,12 @@
+
+
+body {
+    padding-top: 50px;
+    width: 70%;
+    margin: auto;
+}
+
+
+.hidden {
+    visibility: hidden;
+}

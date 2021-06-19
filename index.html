@@ -4,10 +4,67 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href=".\assets\css\normalize.css">
+    <link rel="stylesheet" href=".\assets\css\skeleton.css">
+    <link rel="stylesheet" href=".\assets\css\style.css">
     <title>Document</title>
 </head>
 <body>
-    
+    <header>
+        <h1>Book Library</h1>
+    </header>
+    <form>
+        <div class="row">
+            <div class="three columns">
+                <label for="book-name">
+                    Book Name: 
+                </label>
+                <input class="u-full-width" type="text" placeholder="Moby Dick" id="book-name">
+            </div>
+            <div class="three columns">
+                <label for="author-name">
+                    Author: 
+                </label>
+                <input class="u-full-width" type="text" placeholder="Herman Melville" id="author-name">
+            </div>
+            <div class="two columns">
+                <label for="pages">
+                    Pages: 
+                </label>
+                <input class="u-full-width" type="text" placeholder="635" id="pages">
+            </div>
+            <div class="two columns">
+                <label for="read-or-not">
+                    Read:
+                </label>
+                <select class="u-full-width" id="read-or-not">
+                    <option value="read">Read</option>
+                    <option value="not-read">Not read</option>
+                </select>
+            </div>
+            <div class="two columns">
+                <label for="read-or-not" class="hidden">
+                    Submit:
+                </label>
+                <input class="button-primary" type="submit" value="Submit">
+            </div>
+        </div>
+
+    </form>
+    <table class="u-full-width">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Pages</th>
+                <th>Read</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+   
     <script src=".\assets\javascript\script.js"></script>
 </body>
 </html>
