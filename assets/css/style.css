@@ -1,8 +1,10 @@
-
+* {
+    box-sizing: border-box;
+}
 
 body {
-    padding-top: 50px;
-    width: 70%;
+    padding-top: 50px; 
+    width: 70%;   
     margin: auto;
 }
 
@@ -15,3 +17,5 @@ body {
     cursor: pointer;
 
 }
+
+ 
